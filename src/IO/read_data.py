@@ -1,0 +1,16 @@
+import astropy.io.fits as pyfits
+
+def get_raw_data(fitsfilenames,ytnames,units) :
+
+    '''Return the data from a fitsfile in numpy arrays labeled by
+    dictionary keys corresponding to yt friendly names'''
+
+    data = {}
+    for fitsfile,ytname,unit in zip(fitsfilenames,ytnames,units) :
+        f = pyfits.open(fitsfile)
+        data[ytname] = (f.data,unit)
+
+    return data
+        
+def modify_data_units( data ) :
+    
